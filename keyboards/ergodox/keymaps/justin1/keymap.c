@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | ESC    |   1  |   2  |   3  |   4  |   5  |  ~   |           |   6  |   7  |   8  |   9  |   0  |   -  | BSpace |
+ * | ESC ~  |   1  |   2  |   3  |   4  |   5  |  ~   |           |   6  |   7  |   8  |   9  |   0  |   -  | BSpace |
  * |--------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
  * | Tab    |   Q  |   W  |   E  |   R  |   T  | [ {  |           |  ] } |   Y  |   U  |   I  |   O  |   P  |   \ |  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// Left hand KC_GRV,  KC_GESC
 	KC_GESC,   KC_1,    KC_2,    KC_3,     KC_4,     KC_5,    KC_GRV,
 	KC_TAB,   KC_Q,    KC_W,    KC_E,     KC_R,     KC_T,    KC_LBRC,
-	KC_LCTL, KC_A,    KC_S,    KC_D,     KC_F,     KC_G,
+	KC_LCTL, LT(1,KC_A),  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    KC_B,
 	LT(1,KC_GRAVE),   LGUI(KC_C),  LGUI(KC_V), KC_LALT,  KC_LGUI,
 	LGUI(KC_C),  LGUI(KC_V),
@@ -96,8 +96,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	RESET,   KC_TRNS, KC_TRNS,
 	// Right hand
 	KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSPC,
-	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY,
+	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSFT(KC_LBRC), LSFT(KC_RBRC),
+	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC,
 	KC_TRNS, M(_MOB), KC_TRNS, M(_CUS1),M(_CUS2),KC_TRNS, KC_TRNS,
 	EM_UNDO, KC_VOLD, KC_VOLU, KC_MUTE, KC_TRNS,
 	KC_TRNS, KC_TRNS,
