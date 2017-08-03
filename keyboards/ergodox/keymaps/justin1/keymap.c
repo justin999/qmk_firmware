@@ -98,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSPC,
 	KC_TRNS, KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, LSFT(KC_LBRC), LSFT(KC_RBRC),
 	LSFT(KC_LEFT), LSFT(KC_DOWN), LSFT(KC_UP), LSFT(KC_RIGHT), KC_LBRC, KC_RBRC,
-	KC_TRNS, M(_MOB), KC_TRNS, M(_CUS1),M(_CUS2),KC_TRNS, KC_TRNS,
+	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 	EM_UNDO, KC_VOLD, KC_VOLU, KC_MUTE, KC_TRNS,
 	KC_TRNS, KC_TRNS,
 	KC_TRNS,
-	KC_TRNS, KC_TRNS, KC_TRNS
+	M(_CUS1), KC_TRNS, KC_TRNS
 	),
 };
 
@@ -118,8 +118,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 			 T(1), T(2), T(3), T(MINS),
 			 T(1), T(2), T(3), T(4),
 			 END);
-    case _CUS1: // Your custom macro 1
-	return MACRODOWN(T(E), T(M), T(A), T(C), T(S), T(SPC), END);
+    case _CUS1: // Your custom macro 1 //ambitious
+	return MACRODOWN(T(B), T(E), T(SPC), T(A), T(M), T(B), T(I), T(T), T(I), T(O), T(U), T(S), END);
     case _CUS2: // Your custom macro 2
 	return MACRODOWN(T(L), T(S), T(SPC), T(MINS), T(L), T(ENT), END);
     };
