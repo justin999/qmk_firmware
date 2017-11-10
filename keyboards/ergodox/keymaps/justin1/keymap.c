@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | ESC ~  |   1  |   2  |   3  |   4  |   5  |  ~   |           |   6  |   7  |   8  |   9  |   0  |   -  | BSpace |
+ * | ESC ~  |   1  |   2  |   3  |   4  |   5  | Spot |           |   6  |   7  |   8  |   9  |   0  |   -  | BSpace |
  * |--------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
  * | Tab    |   Q  |   W  |   E  |   R  |   T  | [ {  |           |  ] } |   Y  |   U  |   I  |   O  |   P  |   \ |  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|copy  |           |  B   |------+------+------+------+------+--------|
  * |( LShift|   Z  |   X  |   C  |   V  |   B  | Clip |           |      |   N  |   M  |   ,  |   .  |   /  |RShift )|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | Spot |  Copy| PASTE| Alt  | LGui |                                       | RGUI | Left |  Dn  |  Up  | Right  | 
+ *   | `~   |Ctrl+`| PASTE| Alt  | LGui |                                       | RGUI | Left |  Dn  |  Up  | Right  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Copy |PASTE |       |   `  | ESC  |
@@ -44,15 +44,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
     [BASE] = KEYMAP(  // layer 0 : default
 	// Left hand KC_GRV,  KC_GESC
-	KC_GESC,   KC_1,    KC_2,    KC_3,     KC_4,     KC_5,    KC_GRV,
+	KC_ESC,   KC_1,    KC_2,    KC_3,     KC_4,     KC_5,    LALT(KC_SPC),
 	KC_TAB,   KC_Q,    KC_W,    KC_E,     KC_R,     KC_T,    KC_LBRC,
 	KC_LCTL, LT(1,KC_A),  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    LSFT(LGUI(KC_V)),
-	LALT(KC_SPC),LGUI(KC_C),LGUI(KC_V), KC_LALT,  KC_LGUI,
+	KC_GRV,LCTL(KC_GRV),LCTL(KC_GRV), KC_LALT,  KC_LGUI,
 	LGUI(KC_C),  LGUI(KC_V),
 	SCMD(LCTL(KC_4)),
 	KC_SPC, KC_EQL,  LALT(KC_S),
-  
+
 	// Right hand
 	KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    KC_MINS,   KC_BSPC,
 	KC_RBRC,  KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,    KC_BSLS,
