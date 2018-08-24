@@ -44,14 +44,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
     [BASE] = KEYMAP(  // layer 0 : default
 	// Left hand KC_GRV,  KC_GESC
-	KC_ESC,   KC_1,    KC_2,    KC_3,     KC_4,     KC_5,    LALT(KC_SPC),
+	KC_ESC,   KC_1,    KC_2,    KC_3,     KC_4,     KC_5,    LGUI(KC_SPC),
 	KC_TAB,   KC_Q,    KC_W,    KC_E,     KC_R,     KC_T,    KC_LBRC,
-	KC_LCTL, LT(1,KC_A),  KC_S, KC_D,     KC_F,     KC_G,
+	KC_LCTL,  KC_A,  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    LSFT(LGUI(KC_V)),
 	KC_GRV,LCTL(KC_GRV),LCTL(KC_GRV), KC_LALT,  KC_LGUI,
 	LGUI(KC_C),  LGUI(KC_V),
 	SCMD(LCTL(KC_4)),
-	KC_SPC, KC_EQL,  LALT(KC_S),
+	KC_SPC, KC_EQL,  KC_FN1,
 
 	// Right hand
 	KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    KC_MINS,   KC_BSPC,
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
 	KC_TRNS, KC_TRNS, KC_BTN1, KC_BTN3, KC_BTN2, KC_TRNS, KC_TRNS,
 	KC_TRNS, KC_TRNS, ZM_NRM,  ZM_OUT,  ZM_IN,
-	KC_TRNS, KC_TRNS,
+	KC_TRNS, RGB_TOG,
 	KC_TRNS,
 	RESET,   KC_TRNS, KC_TRNS,
 	// Right hand
@@ -107,7 +107,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
+    [1] = ACTION_LAYER_TAP_TOGGLE(FN1)                // FN1 - Momentary Layer 1 (Symbols)
 };
+
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
