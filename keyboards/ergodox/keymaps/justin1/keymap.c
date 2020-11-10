@@ -4,9 +4,8 @@
 
 #define BASE 0 // default layer
 #define FN1 1 // symbols
-#define MDIA 2 // media keys
+#define SPACE4 2 // 4 spaces
 #define BRACKETS 3 // BRACKETS
-#define SPACE4 4 // custom macro that type 4 spaces
 
 
 #define CAPS_CTL CTL_T(KC_CAPS)  // Caps on tap, Ctrl on hold.
@@ -137,7 +136,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 			SEND_STRING ("{}");
 		}
 		break;
-		case 4:
+		case 2:
 		if (record->event.pressed) { 
 			SEND_STRING ("    ");
 		}
