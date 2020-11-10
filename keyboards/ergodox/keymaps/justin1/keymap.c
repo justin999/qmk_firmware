@@ -3,7 +3,9 @@
 #include "action_layer.h"
 
 #define BASE 0 // default layer
-#define FN1  1 // media layer
+#define FN1 1 // symbols
+#define MDIA 2 // media keys
+#define SPACE4 3 // custom macro that type 4 spaces
 
 #define CAPS_CTL CTL_T(KC_CAPS)  // Caps on tap, Ctrl on hold.
 #define COPY     LCTL(KC_V)      // C-c Copy
@@ -13,9 +15,12 @@
 #define ZM_IN    LCTL(KC_PLUS)   // C-+ Zoom In
 #define EM_UNDO  LCTL(KC_UNDS)   // C-_ Emacs Undo
 
-#define _MOB  1 // Mobile#
-#define _CUS1 2 // Custom macro 1
-#define _CUS2 3 // Custom macro 2
+enum custom_keycodes {
+  PLACEHOLDER = SAFE_RANGE, // can always be here
+  EPRM,
+  VRSN,
+  RGB_SLD
+};
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -57,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    KC_MINS,   KC_BSPC,
 	KC_RBRC,  KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,    KC_BSLS,
 	          KC_H,    KC_J,    KC_K,     KC_L,     LT(1,KC_SCOLON), KC_QUOT,
-	KC_B ,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, KC_RSFT,
+	SPACE4,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, KC_RSFT,
 	KC_RGUI,KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT,
 	KC_GRV,  KC_ESC,
 	KC_PGUP,
@@ -102,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	EM_UNDO, KC_VOLD, KC_VOLU, KC_MUTE, KC_TRNS,
 	KC_TRNS, KC_TRNS,
 	KC_TRNS,
-	M(_CUS1), KC_TRNS, KC_TRNS
+	KC_TRNS, KC_TRNS, KC_TRNS
 	),
 };
 
@@ -113,25 +118,65 @@ const uint16_t PROGMEM fn_actions[] = {
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-    // MACRODOWN only works in this function
-    switch(id) {
-    case _MOB: // Your mobile# here.
-	return MACRODOWN(T(1), T(2), T(3), T(MINS),
-			 T(1), T(2), T(3), T(MINS),
-			 T(1), T(2), T(3), T(4),
-			 END);
-    case _CUS1: // Your custom macro 1 //ambitious
-	return MACRODOWN(T(B), T(E), T(SPC), T(A), T(M), T(B), T(I), T(T), T(I), T(O), T(U), T(S), END);
-    case _CUS2: // Your custom macro 2
-	return MACRODOWN(T(L), T(S), T(SPC), T(MINS), T(L), T(ENT), END);
-    };
+  // MACRODOWN only works in this function
+      switch(id) {
+        case 0:
+        if (record->event.pressed) {
+          SEND_STRING ("");
+        }
+        break;
+        case 1:
+        if (record->event.pressed) { // For resetting EEPROM
+          eeconfig_init();
+        }
+        break;
+		case 3:
+		if (record->event.pressed) { 
+			SEND_STRING ("    ");
+		}
+		break;
+      }
     return MACRO_NONE;
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    // dynamically generate these.
+    case EPRM:
+      if (record->event.pressed) {
+        eeconfig_init();
+      }
+      return false;
+      break;
+    case VRSN:
+      if (record->event.pressed) {
+        SEND_STRING ("");
+      }
+      return false;
+      break;
+    case RGB_SLD:
+      if (record->event.pressed) {
+        #ifdef RGBLIGHT_ENABLE
+          rgblight_mode(1);
+        #endif
+      }
+      return false;
+      break;
+	case SPACE4:
+	  if (record->event.pressed) {
+        SEND_STRING ("    ");
+      }
+      return false;
+      break;
+  }
+  return true;
+}
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
 
 };
+
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
@@ -143,16 +188,16 @@ void matrix_scan_user(void) {
     ergodox_right_led_2_off();
     ergodox_right_led_3_off();
     switch (layer) {
-	// TODO: Make this relevant to the ErgoDox EZ.
-    case 1:
-	ergodox_right_led_1_on();
-	break;
-    case 2:
-	ergodox_right_led_2_on();
-	break;
-    default:
-	// none
-	break;
+      // TODO: Make this relevant to the ErgoDox EZ.
+        case 1:
+            ergodox_right_led_1_on();
+            break;
+        case 2:
+            ergodox_right_led_2_on();
+            break;
+        default:
+            // none
+            break;
     }
 
 };
