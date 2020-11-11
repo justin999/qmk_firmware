@@ -131,17 +131,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           eeconfig_init();
         }
         break;
-		case 3:
-		if (record->event.pressed) { 
-			SEND_STRING ("{}");
-		}
-		break;
-		case 2:
-		if (record->event.pressed) { 
-			SEND_STRING ("    ");
-		}
-		break;
-      }
+		  }
     return MACRO_NONE;
 };
 
@@ -171,6 +161,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	case BRACKETS:
 	  if (record->event.pressed) {
         SEND_STRING ("{}");
+        register_code(KC_LEFT);
+        unregister_code(KC_LEFT);
       }
       return false;
       break;
