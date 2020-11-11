@@ -6,7 +6,7 @@
 #define FN1 1 // symbols
 #define SPACE4 2 // 4 spaces
 #define BRACKETS 3 // BRACKETS
-
+#define TESTCARD 10001
 
 #define CAPS_CTL CTL_T(KC_CAPS)  // Caps on tap, Ctrl on hold.
 #define COPY     LCTL(KC_V)      // C-c Copy
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_LCTL,  KC_A,  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    LSFT(LGUI(KC_V)),
 	KC_GRV,LCTL(KC_GRV),LCTL(KC_GRV), KC_LALT,  KC_LGUI,
-	LGUI(KC_C),  LGUI(KC_V),
+	SPACE4,  BRACKETS,
 	SCMD(LCTL(KC_4)),
 	KC_SPC, KC_EQL,  KC_FN1,
 
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    KC_MINS,   KC_BSPC,
 	KC_RBRC,  KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,    KC_BSLS,
 	          KC_H,    KC_J,    KC_K,     KC_L,     LT(1,KC_SCOLON), KC_QUOT,
-	SPACE4,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, KC_RSFT,
+	KC_B,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, KC_RSFT,
 	KC_RGUI,KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT,
-	KC_ESC,  BRACKETS,
+	KC_ESC,  TESTCARD,
 	KC_PGUP,
 	KC_PGDN, KC_ENT, KC_SPC),
 /* Keymap 1: Fn Keys, media and mouse keys
@@ -158,21 +158,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-	case BRACKETS:
-	  if (record->event.pressed) {
+	  case BRACKETS:
+	    if (record->event.pressed) {
         SEND_STRING ("{}");
         register_code(KC_LEFT);
         unregister_code(KC_LEFT);
       }
       return false;
       break;
-	case SPACE4:
-	  if (record->event.pressed) {
+	  case SPACE4:
+	    if (record->event.pressed) {
         SEND_STRING ("    ");
       }
       return false;
       break;
+    case TESTCARD:
+      if (record->event.pressed) {
+        SEND_STRING ("4242424242424242");
+      }
+      return false;
+      break;
   }
+
   return true;
 }
 
