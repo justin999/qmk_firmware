@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | `~   |Ctrl+`| PASTE| Alt  | LGui |                                       | RGUI | Left |  Dn  |  Up  | Right  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | Copy |PASTE |       |  ESC |  {}  |
+ *                                        | {\n} |SPACE4|       |  ESC |  {}  |
  *                                 ,------|------+------|       |------+------+------.
  *                                 |      |      |ScCopy|       |  PgUp|      |      |
  *                                 |Space |' = ' |------|       |------| Enter| Space|
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_LCTL,  KC_A,  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    LSFT(LGUI(KC_V)),
 	KC_GRV,LCTL(KC_GRV),LCTL(KC_GRV), KC_LALT,  KC_LGUI,
-	SPACE4,  BRACKETS,
+	BRACKETS, SPACE4,
 	SCMD(LCTL(KC_4)),
 	KC_SPC, KC_EQL,  KC_FN1,
 
