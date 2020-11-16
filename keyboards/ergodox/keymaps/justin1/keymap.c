@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab    |   Q  |   W  |   E  |   R  |   T  | [ {  |           |  ] } |   Y  |   U  |   I  |   O  |   P  |   \ |  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Ctl    |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------|copy  |           |space4|------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|copy  |           |   B  |------+------+------+------+------+--------|
  * |( LShift|   Z  |   X  |   C  |   V  |   B  | Clip |           |      |   N  |   M  |   ,  |   .  |   /  |RShift )|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | `~   |Ctrl+`| PASTE| Alt  | LGui |                                       | RGUI | Left |  Dn  |  Up  | Right  |
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------+------|       |------+------+------.
  *                                 |      |      |ScCopy|       |  PgUp|      |      |
  *                                 |Space |' = ' |------|       |------| Enter| Space|
- *                                 |      |      | Spot |       |  PgDn|      |      |
+ *                                 |      |      |SPACE4|       |  PgDn|      |      |
  *                                 `--------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_LCTL,  KC_A,  KC_S, KC_D,     KC_F,     KC_G,
 	KC_LSFT,  KC_Z,    KC_X,    KC_C,     KC_V,     KC_B,    LSFT(LGUI(KC_V)),
 	KC_GRV,LCTL(KC_GRV),LCTL(KC_GRV), KC_LALT,  KC_LGUI,
-	BRACKETS, SPACE4,
+	BRACKETS, SPACE4,//KC_FN1-> KC_FN1はレイヤー切り替えのためのものだけど、使いどころが今のところないので、コメントアウト
 	SCMD(LCTL(KC_4)),
-	KC_SPC, KC_EQL,  KC_FN1,
+	KC_SPC, KC_EQL,  SPACE4,
 
 	// Right hand
 	KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    KC_MINS,   KC_BSPC,
