@@ -7,6 +7,7 @@
 #define SPACE4 2 // 4 spaces
 #define BRACKETS 3 // BRACKETS
 #define TESTCARD 10001
+#define POSTALCODE 10002
 
 #define CAPS_CTL CTL_T(KC_CAPS)  // Caps on tap, Ctrl on hold.
 #define COPY     LCTL(KC_V)      // C-c Copy
@@ -39,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | `~   |Ctrl+`| PASTE| Alt  | LGui |                                       | RGUI | Left |  Dn  |  Up  | Right  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |SPACE4| {\n} |       |  ESC |  {}  |
+ *                                        |SPACE4| {\n} |       |POSTAL|  {}  |
  *                                 ,------|------+------|       |------+------+------.
  *                                 |      |      |ScCopy|       |  PgUp|      |      |
  *                                 |Space |' = ' |------|       |------| Enter| Space|
@@ -65,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	          KC_H,    KC_J,    KC_K,     KC_L,     LT(1,KC_SCOLON), KC_QUOT,
 	KC_B,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, KC_RSFT,
 	KC_RGUI,KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT,
-	KC_ESC,  TESTCARD,
+	POSTALCODE,  TESTCARD,
 	KC_PGUP,
 	KC_PGDN, KC_ENT, KC_SPC),
 /* Keymap 1: Fn Keys, media and mouse keys
@@ -175,6 +176,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TESTCARD:
       if (record->event.pressed) {
         SEND_STRING ("4242424242424242");
+      }
+      return false;
+      break;
+    case POSTALCODE:
+      if (record->event.pressed) {
+        SEND_STRING ("1530062");
       }
       return false;
       break;
